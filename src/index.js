@@ -27,15 +27,22 @@ function ramenMenu(data) {
         menuItem.textContent = item.name
         menuItem.addEventListener('click', () => {
             menuItem(item);
-        } )
+        });
+        menu.append(menuItem)
 
     })
 
 
 };
 
+/**- Click on an image from the `#ramen-menu` div and see all the info about that
+  ramen displayed inside the `#ramen-detail` div and where it says
+  `insert comment here` and `insert rating here`. */
 function selectItem(item) {
     currentItem = item
+    const itemImg = document.querySelector('#detail-image')
+    const itemName = document.querySelector('name')
+    const item = document.querySelector('restaurant')
 
 };
 
@@ -46,6 +53,7 @@ longer on the page.  */
 const ramenForm = document.querySelector('#new-ramen')
 ramenForm.addEventListener('submit', (event) => {
     event.preventDefault()
+    // add new comment???
 
 
 })
