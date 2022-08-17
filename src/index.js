@@ -41,8 +41,8 @@ function ramenMenu(data) {
 function selectItem(item) {
     currentItem = item
     const itemImg = document.querySelector('#detail-image')
-    const itemName = document.querySelector('name')
-    const item = document.querySelector('restaurant')
+    const userName = document.querySelector('name')
+    const restName = document.querySelector('restaurant')
 
 };
 
