@@ -6,12 +6,64 @@ fetch(' http://localhost:3000/ramens')
 
 
 function renderRamen(ramenObj) { //console.log(ramenObj)
-     const ramenMenu = document.querySelector('#ramen-menu')  //console.log(ramenMenu )
-     let ramenImg = document.createElement('img')   //console.log(ramenImg)
-     ramenImg.src = ramenObj.image
-     ramenMenu.append(ramenImg)
+     const ramenMenu = document.querySelector('#ramen-menu') ; //console.log(ramenMenu )
+     let ramenImg = document.createElement('img') ;  //console.log(ramenImg)
+     ramenImg.src = ramenObj.image;
+     ramenMenu.append(ramenImg);
+     handleClick(ramenImg, ramenObj);
 };
- 
+function handleClick(image, ramen) {
+  image.addEventListener('click', () => {
+    const detailsImage = document.querySelector('.detail-image');
+    detailsImage.src = ramen.image;
+
+    const detailsName = document.querySelector('.name');
+    detailsName.textContent = ramen.name;
+
+    const detailsRest = document.querySelector('.restaurant');
+    detailsRest.textContent = ramen.restaurant;
+
+    const rateRamen = document.querySelector('#rating-display');
+    rateRamen.textContent = ramen.rating;
+
+    const detailsComments = document.querySelector('#comment-display');
+    detailsComments.textContent = ramen.comment;
+
+  })
+
+};
+
+function handleForm() {
+  const form = document.querySelector('#new-ramen');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let newName = event.target["name"].value;
+    let newRest = event.target["restaurant"].value;
+    let newImg = event.target["image"].value;
+    let newRating = event.target["rating"].value;
+    let newComment = event.target["new-comment"].value;
+
+    const newRamenObj = {
+      name : newName,
+      restaurant : newRest,
+      image : newImg,
+      rating : newRating,
+      comment : newComment,
+    };
+    fetch('http://localhost:3000/ramens', {
+        method : "POST",
+        headers : {
+          "content-type" : "application/json"
+        },
+        body : JSON.stringify(newRamenObj)
+    })
+    .then(response => response.json())
+    .then(data => renderRamen(data))
+  });
+
+};
+ handleForm()
+ // took me 60min to type this
 
 
 //-----------------------------
