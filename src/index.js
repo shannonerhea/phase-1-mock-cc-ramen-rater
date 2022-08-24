@@ -1,5 +1,17 @@
+fetch(' http://localhost:3000/ramens')
+.then(response => response.json())
+.then(data => data.forEach((ramen) => {
+    renderRamen(ramen)
+  })) 
 
 
+function renderRamen(ramenObj) { //console.log(ramenObj)
+     const ramenMenu = document.querySelector('#ramen-menu')  //console.log(ramenMenu )
+     let ramenImg = document.createElement('img')   //console.log(ramenImg)
+     ramenImg.src = ramenObj.image
+     ramenMenu.append(ramenImg)
+};
+ 
 
 
 //-----------------------------
