@@ -64,7 +64,11 @@ function handleForm() {
 };
  handleForm()
  // took me 60min to type this
-
+// OG eventListener that was refactored out of renderRamen
+// ramenImage.addEvemtListener('click'), () => {
+//  const detailImage = document.querySelector('.detail-image')
+//  detailImage.src = ramenObj.image
+//})
 
 //-----------------------------
 // fetch('http://localhost:3000/ramens')
