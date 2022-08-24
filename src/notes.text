@@ -1,0 +1,184 @@
+fetch("http://localhost:3000/ramens")
+  .then(response => response.json())
+  .then(ramenObjects => {
+    // renderRamen(ramenObjects)
+    ramenObjects.forEach(ramen => renderRamenMenuItem(ramen))
+  })
+
+function renderRamenMenuItem(ramen) {
+  const newImg = document.createElement('img')
+  newImg.src = ramen.image
+
+  newImg.addEventListener('click', () => ramenSelector(ramen))
+
+  document.getElementById('ramen-menu').append(newImg)
+}
+
+function ramenSelector(ramen) {
+  // grab the image to replace
+  const img = document.querySelector('.detail-image')
+  img.src = ramen.image
+
+  // add the ramen name
+  const name = document.querySelector('.name')
+  name.textContent = ramen.name
+
+  // add the restaurant
+  const restaurant = document.querySelector('.restaurant')
+  restaurant.textContent = ramen.restaurant
+
+  // add the rating
+  const rating = document.querySelector('#rating-display')
+  rating.textContent = ramen.rating
+
+  // add the comment
+  const comment = document.querySelector('#comment-display')
+  comment.textContent = ramen.comment
+}
+
+const newRamenForm = document.querySelector('#new-ramen')
+
+newRamenForm.addEventListener('submit', (event) => handleFormSubmit(event))
+
+function handleFormSubmit(event) {
+  event.preventDefault()
+
+  // create an object with the values from the form (event)
+  const ramenObject = {
+    name: event.target.name.value,
+    restaurant: event.target.restaurant.value,
+    image: event.target.image.value,
+    rating: event.target.rating.value,
+    comment: event.target["new-comment"].value
+    // comment: event.target.new-comment.value // bad, dont do
+  }
+
+  // add the new object to the DOM
+  renderRamenMenuItem(ramenObject)
+
+  // clear that form
+  newRamenForm.reset()
+  // event.target.reset() // same
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+As a user, I can:
+- See all ramen images in the `div` with the id of `ramen-menu`. When the page
+  loads, request the data from the server to get all the ramen objects. Then,
+  display the image for each of the ramen using an `img` tag inside the
+  `#ramen-menu` div.
+
+- Click on an image from the `#ramen-menu` div and see all the info about that
+  ramen displayed inside the `#ramen-detail` div and where it says
+  `insert comment here` and `insert rating here`.
+ */
+  let currentItem;
+  fetch('http://localhost:3000/ramens')
+  .then(response => response.json())
+  .then(data => {
+      //console.log(data) winning lol
+      ramenMenu(data)
+      selectItem(data[0])
+  
+  })
+  
+  function ramenMenu(data) {
+      const menu = document.querySelector(`#ramen-menu`);
+  
+      data.forEach(item => {
+          const menuItem = document.createElement('span')
+          menuItem.textContent = item.name
+          menuItem.addEventListener('click', () => {
+              menuItem(item);
+          });
+          menu.append(menuItem)
+  
+      })
+  
+  
+  };
+  
+  /**- Click on an image from the `#ramen-menu` div and see all the info about that
+    ramen displayed inside the `#ramen-detail` div and where it says
+    `insert comment here` and `insert rating here`. */
+  function selectItem(item) {
+      currentItem = item
+      const itemImg = document.querySelector('#detail-image')
+      const userName = document.querySelector('name')
+      const restName = document.querySelector('restaurant')
+  
+  };
+  
+  /**Create a new ramen after submitting the `new-ramen` form. The new ramen should
+  be added to the`#ramen-menu` div. The new ramen does not need to persist; in
+  other words, if you refresh the page, it's okay that the new ramen is no
+  longer on the page.  */
+  const ramenForm = document.querySelector('#new-ramen')
+  ramenForm.addEventListener('submit', (event) => {
+      event.preventDefault()
+      // add new comment??
+  
+  
+  })
+  
